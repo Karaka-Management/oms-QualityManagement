@@ -19,7 +19,7 @@ namespace Modules\QualityManagement\tests\Admin;
  */
 final class AdminTest extends \PHPUnit\Framework\TestCase
 {
-    protected const NAME = 'QualityManagement';
+    protected const NAME = 'http://127.0.0.1/en/backend/qualitymanagement';
 
     protected const URI_LOAD = '';
 

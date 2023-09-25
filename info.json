@@ -1,0 +1,47 @@
+{
+    "name": {
+        "id": 1008500000,
+        "internal": "QualityManagement",
+        "external": "QualityManagement"
+    },
+    "category": "Tools",
+    "version": "1.0.0",
+    "requirements": {
+        "phpOMS": "1.0.0",
+        "phpOMS-db": "1.0.0"
+    },
+    "creator": {
+        "name": "Jingga",
+        "website": "jingga.app"
+    },
+    "description": "The administration module.",
+    "directory": "QualityManagement",
+    "dependencies": {
+        "Admin": "1.0.0",
+        "Tasks": "1.0.0",
+        "Tools": "1.0.0"
+    },
+    "providing": {
+        "Navigation": "*"
+    },
+    "load": [
+        {
+            "pid": [
+                "/qualitymanagement"
+            ],
+            "type": 4,
+            "for": "Content",
+            "file": "QualityManagement",
+            "from": "QualityManagement"
+        },
+        {
+            "pid": [
+                "/"
+            ],
+            "type": 5,
+            "from": "QualityManagement",
+            "for": "Navigation",
+            "file": "Navigation"
+        }
+    ]
+}
