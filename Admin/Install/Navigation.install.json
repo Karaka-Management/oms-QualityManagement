@@ -7,7 +7,7 @@
         "name": "QualityManagement",
         "uri": null,
         "target": "self",
-        "icon": "warning",
+        "icon": "frame_inspect",
         "order": 100,
         "from": "QualityManagement",
         "permission": { "permission": 2, "type": null, "element": null },
