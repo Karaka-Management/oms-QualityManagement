@@ -12,6 +12,53 @@
         "from": "QualityManagement",
         "permission": { "permission": 2, "type": null, "element": null },
         "parent": 0,
+        "children": [
+            {
+                "id": 1008502001,
+                "pid": "/",
+                "type": 2,
+                "subtype": 1,
+                "name": "Reports",
+                "uri": "{/base}/qualitymanagement/report/list?{?}",
+                "target": "self",
+                "icon": null,
+                "order": 5,
+                "from": "QualityManagement",
+                "permission": { "permission": 2, "category": null, "element": null },
+                "parent": 1008501001,
+                "children": [
+                    {
+                        "id": 1008502002,
+                        "pid": "/qualitymanagement",
+                        "type": 3,
+                        "subtype": 1,
+                        "name": "List",
+                        "uri": "{/base}/qualitymanagement/report/list?{?}",
+                        "target": "self",
+                        "icon": null,
+                        "order": 1,
+                        "from": "QualityManagement",
+                        "permission": { "permission": 2, "category": null, "element": null },
+                        "parent": 1008502001,
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 1008503001,
+        "pid": "/",
+        "type": 2,
+        "subtype": 1,
+        "name": "QualityReport",
+        "uri": "{/base}/private/qualitymanagement/dashboard?{?}",
+        "target": "self",
+        "icon": null,
+        "order": 1,
+        "from": "QualityManagement",
+        "permission": { "permission": 2, "type": 2, "element": null },
+        "parent": 1003401001,
         "children": []
     }
 ]
