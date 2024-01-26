@@ -14,6 +14,6 @@ declare(strict_types=1);
 
 return ['Navigation' => [
     'QualityManagement' => 'Qualitätsmanagement',
-    'Reports' => 'Berichte',
-    'QualityReport' => 'Qualitätsbericht',
+    'Reports'           => 'Berichte',
+    'QualityReport'     => 'Qualitätsbericht',
 ]];

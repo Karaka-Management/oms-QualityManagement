@@ -14,6 +14,11 @@ declare(strict_types=1);
 
 namespace Modules\QualityManagement\Controller;
 
+use phpOMS\Contract\RenderableInterface;
+use phpOMS\Message\RequestAbstract;
+use phpOMS\Message\ResponseAbstract;
+use phpOMS\Views\View;
+
 /**
  * QualityManagement controller class.
  *
@@ -24,4 +29,24 @@ namespace Modules\QualityManagement\Controller;
  */
 final class BackendController extends Controller
 {
+    /**
+     * Routing end-point for application behavior.
+     *
+     * @param RequestAbstract  $request  Request
+     * @param ResponseAbstract $response Response
+     * @param array            $data     Generic data
+     *
+     * @return RenderableInterface
+     *
+     * @since 1.0.0
+     * @codeCoverageIgnore
+     */
+    public function viewPrivateReportDashboard(RequestAbstract $request, ResponseAbstract $response, array $data = []) : RenderableInterface
+    {
+        $view = new View($this->app->l11nManager, $request, $response);
+        $view->setTemplate('/Modules/Support/Theme/Backend/report-list');
+        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1002901101, $request, $response);
+
+        return $view;
+    }
 }
