@@ -18,7 +18,7 @@ use phpOMS\Account\PermissionType;
 use phpOMS\Router\RouteVerb;
 
 return [
-    '^.*/qualitymanagement/report/list(\?.*$|$)' => [
+    '^/qualitymanagement/report/list(\?.*$|$)' => [
         [
             'dest'       => '\Modules\QualityManagement\Controller\BackendController:viewReportDashboard',
             'verb'       => RouteVerb::GET,
@@ -29,7 +29,7 @@ return [
             ],
         ],
     ],
-    '^.*/qualitymanagement/report/view(\?.*$|$)' => [
+    '^/qualitymanagement/report/view(\?.*$|$)' => [
         [
             'dest'       => '\Modules\QualityManagement\Controller\BackendController:viewQualityReport',
             'verb'       => RouteVerb::GET,
@@ -40,7 +40,7 @@ return [
             ],
         ],
     ],
-    '^.*/qualitymanagement/audit/list(\?.*$|$)' => [
+    '^/qualitymanagement/audit/list(\?.*$|$)' => [
         [
             'dest'       => '\Modules\QualityManagement\Controller\BackendController:viewAuditList',
             'verb'       => RouteVerb::GET,
@@ -51,7 +51,7 @@ return [
             ],
         ],
     ],
-    '^.*/qualitymanagement/audit/view(\?.*$|$)' => [
+    '^/qualitymanagement/audit/view(\?.*$|$)' => [
         [
             'dest'       => '\Modules\QualityManagement\Controller\BackendController:viewQuality',
             'verb'       => RouteVerb::GET,
@@ -63,7 +63,7 @@ return [
         ],
     ],
 
-    '^.*/private/qualitymanagement/dashboard(\?.*$|$)' => [
+    '^/private/qualitymanagement/dashboard(\?.*$|$)' => [
         [
             'dest'       => '\Modules\QualityManagement\Controller\BackendController:viewPrivateReportDashboard',
             'verb'       => RouteVerb::GET,
@@ -74,7 +74,7 @@ return [
             ],
         ],
     ],
-    '^.*/private/qualitymanagement/report(\?.*$|$)' => [
+    '^/private/qualitymanagement/report(\?.*$|$)' => [
         [
             'dest'       => '\Modules\QualityManagement\Controller\BackendController:viewPrivateReport',
             'verb'       => RouteVerb::GET,
