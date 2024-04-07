@@ -14,12 +14,8 @@ declare(strict_types=1);
 
 namespace Modules\QualityManagement\Controller;
 
-use Modules\Admin\Models\AccountMapper;
-use Modules\Admin\Models\ContactType;
-use Modules\Messages\Models\EmailMapper;
 use Modules\QualityManagement\Models\Report;
 use Modules\QualityManagement\Models\ReportMapper;
-use Modules\QualityManagement\Models\SettingsEnum;
 use Modules\Tasks\Models\TaskElementMapper;
 use Modules\Tasks\Models\TaskMapper;
 use Modules\Tasks\Models\TaskStatus;
@@ -103,7 +99,7 @@ final class ApiController extends Controller
         $task->type = TaskType::HIDDEN;
         $task->unit ??= $this->app->unitId;
 
-        $report      = new Report($task);
+        $report = new Report($task);
 
         return $report;
     }

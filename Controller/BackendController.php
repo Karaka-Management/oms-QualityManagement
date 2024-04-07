@@ -69,8 +69,8 @@ final class BackendController extends Controller
         $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1008502001, $request, $response);
 
         $view->data['reports'] = [];
-        $view->data['open'] = [];
-        $view->data['stats'] = [];
+        $view->data['open']    = [];
+        $view->data['stats']   = [];
 
         return $view;
     }

@@ -62,8 +62,8 @@ class Report
     public function toArray() : array
     {
         return [
-            'id'             => $this->id,
-            'task'           => $this->task,
+            'id'   => $this->id,
+            'task' => $this->task,
         ];
     }
 
