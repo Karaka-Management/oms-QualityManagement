@@ -66,7 +66,11 @@ final class BackendController extends Controller
     {
         $view = new View($this->app->l11nManager, $request, $response);
         $view->setTemplate('/Modules/QualityManagement/Theme/Backend/report-dashboard');
-        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1002901101, $request, $response);
+        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1008502001, $request, $response);
+
+        $view->data['reports'] = [];
+        $view->data['open'] = [];
+        $view->data['stats'] = [];
 
         return $view;
     }

@@ -41,6 +41,21 @@
                         "permission": { "permission": 2, "category": null, "element": null },
                         "parent": 1008502001,
                         "children": []
+                    },
+                    {
+                        "id": 1008502003,
+                        "pid": "/qualitymanagement",
+                        "type": 3,
+                        "subtype": 1,
+                        "name": "Create",
+                        "uri": "{/base}/qualitymanagement/report/create?{?}",
+                        "target": "self",
+                        "icon": null,
+                        "order": 5,
+                        "from": "QualityManagement",
+                        "permission": { "permission": 2, "category": null, "element": null },
+                        "parent": 1008502001,
+                        "children": []
                     }
                 ]
             }

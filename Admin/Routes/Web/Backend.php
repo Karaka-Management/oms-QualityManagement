@@ -22,6 +22,7 @@ return [
         [
             'dest'       => '\Modules\QualityManagement\Controller\BackendController:viewReportDashboard',
             'verb'       => RouteVerb::GET,
+            'active' => true,
             'permission' => [
                 'module' => BackendController::NAME,
                 'type'   => PermissionType::READ,
@@ -33,9 +34,22 @@ return [
         [
             'dest'       => '\Modules\QualityManagement\Controller\BackendController:viewQualityReport',
             'verb'       => RouteVerb::GET,
+            'active' => true,
             'permission' => [
                 'module' => BackendController::NAME,
                 'type'   => PermissionType::READ,
+                'state'  => PermissionCategory::QUALITY_REPORT,
+            ],
+        ],
+    ],
+    '^/qualitymanagement/report/create(\?.*$|$)' => [
+        [
+            'dest'       => '\Modules\QualityManagement\Controller\BackendController:viewQualityReportCreate',
+            'verb'       => RouteVerb::GET,
+            'active' => true,
+            'permission' => [
+                'module' => BackendController::NAME,
+                'type'   => PermissionType::CREATE,
                 'state'  => PermissionCategory::QUALITY_REPORT,
             ],
         ],
@@ -44,6 +58,7 @@ return [
         [
             'dest'       => '\Modules\QualityManagement\Controller\BackendController:viewAuditList',
             'verb'       => RouteVerb::GET,
+            'active' => true,
             'permission' => [
                 'module' => BackendController::NAME,
                 'type'   => PermissionType::READ,
@@ -55,6 +70,7 @@ return [
         [
             'dest'       => '\Modules\QualityManagement\Controller\BackendController:viewQuality',
             'verb'       => RouteVerb::GET,
+            'active' => true,
             'permission' => [
                 'module' => BackendController::NAME,
                 'type'   => PermissionType::READ,
@@ -67,6 +83,7 @@ return [
         [
             'dest'       => '\Modules\QualityManagement\Controller\BackendController:viewPrivateReportDashboard',
             'verb'       => RouteVerb::GET,
+            'active' => true,
             'permission' => [
                 'module' => BackendController::NAME,
                 'type'   => PermissionType::READ,
@@ -78,6 +95,7 @@ return [
         [
             'dest'       => '\Modules\QualityManagement\Controller\BackendController:viewPrivateReport',
             'verb'       => RouteVerb::GET,
+            'active' => true,
             'permission' => [
                 'module' => BackendController::NAME,
                 'type'   => PermissionType::READ,

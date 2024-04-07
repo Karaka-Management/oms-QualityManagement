@@ -1,0 +1,21 @@
+{
+    "qualitymgmt_report": {
+        "name": "qualitymgmt_report",
+        "fields": {
+            "qualitymgmt_report_id": {
+                "name": "qualitymgmt_report_id",
+                "type": "INT",
+                "null": false,
+                "primary": true,
+                "autoincrement": true
+            },
+            "qualitymgmt_report_task": {
+                "name": "qualitymgmt_report_task",
+                "type": "INT",
+                "null": false,
+                "foreignTable": "task",
+                "foreignKey": "task_id"
+            }
+        }
+    }
+}

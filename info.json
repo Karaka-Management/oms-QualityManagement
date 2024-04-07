@@ -18,6 +18,7 @@
     "dependencies": {
         "Admin": "1.0.0",
         "Tasks": "1.0.0",
+        "ItemManagement": "1.0.0",
         "Tools": "1.0.0"
     },
     "providing": {
@@ -29,7 +30,7 @@
                 "/qualitymanagement"
             ],
             "type": 4,
-            "for": "Content",
+            "for": 0,
             "file": "QualityManagement",
             "from": "QualityManagement"
         },
