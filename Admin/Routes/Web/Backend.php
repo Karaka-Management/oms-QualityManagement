@@ -78,29 +78,4 @@ return [
             ],
         ],
     ],
-
-    '^/private/qualitymanagement/dashboard(\?.*$|$)' => [
-        [
-            'dest'       => '\Modules\QualityManagement\Controller\BackendController:viewPrivateReportDashboard',
-            'verb'       => RouteVerb::GET,
-            'active'     => true,
-            'permission' => [
-                'module' => BackendController::NAME,
-                'type'   => PermissionType::READ,
-                'state'  => PermissionCategory::PRIVATE_DASHBOARD,
-            ],
-        ],
-    ],
-    '^/private/qualitymanagement/report(\?.*$|$)' => [
-        [
-            'dest'       => '\Modules\QualityManagement\Controller\BackendController:viewPrivateReport',
-            'verb'       => RouteVerb::GET,
-            'active'     => true,
-            'permission' => [
-                'module' => BackendController::NAME,
-                'type'   => PermissionType::READ,
-                'state'  => PermissionCategory::PRIVATE_DASHBOARD,
-            ],
-        ],
-    ],
 ];

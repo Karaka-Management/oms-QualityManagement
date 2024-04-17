@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Modules\QualityManagement\Controller;
 
+use Modules\Notification\Models\NotificationType;
 use Modules\QualityManagement\Models\Report;
 use Modules\QualityManagement\Models\ReportMapper;
 use Modules\Tasks\Models\TaskElementMapper;
@@ -80,6 +81,11 @@ final class ApiController extends Controller
         $report = $this->createReportFromRequest($request);
         $this->createModel($request->header->account, $report, ReportMapper::class, 'report', $request->getOrigin());
 
+        $first = \reset($report->task->taskElements);
+        if ($first !== false) {
+            $this->app->moduleManager->get('Tasks', 'Api')->createNotifications($first, NotificationType::CREATE, $request);
+        }
+
         $this->createStandardCreateResponse($request, $response, $report);
     }
 
@@ -95,7 +101,7 @@ final class ApiController extends Controller
     private function createReportFromRequest(RequestAbstract $request) : Report
     {
         $request->setData('redirect', 'qualitymanagement/report/view?for={$id}');
-        $task       = $this->app->moduleManager->get('Tasks')->createTaskFromRequest($request);
+        $task       = $this->app->moduleManager->get('Tasks', 'Api')->createTaskFromRequest($request);
         $task->type = TaskType::HIDDEN;
         $task->unit ??= $this->app->unitId;
 
