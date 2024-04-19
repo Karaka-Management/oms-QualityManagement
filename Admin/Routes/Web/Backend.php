@@ -68,7 +68,7 @@ return [
     ],
     '^/qualitymanagement/audit/view(\?.*$|$)' => [
         [
-            'dest'       => '\Modules\QualityManagement\Controller\BackendController:viewQuality',
+            'dest'       => '\Modules\QualityManagement\Controller\BackendController:viewAudit',
             'verb'       => RouteVerb::GET,
             'active'     => true,
             'permission' => [

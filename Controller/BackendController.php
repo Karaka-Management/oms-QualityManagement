@@ -29,6 +29,7 @@ use phpOMS\Message\RequestAbstract;
 use phpOMS\Message\ResponseAbstract;
 use phpOMS\Views\View;
 use Modules\Profile\Models\SettingsEnum as ProfileSettingsEnum;
+use phpOMS\Message\Http\RequestStatusCode;
 
 /**
  * QualityManagement controller class.
@@ -134,8 +135,6 @@ final class BackendController extends Controller
     public function viewQualityReport(RequestAbstract $request, ResponseAbstract $response, array $data = []) : RenderableInterface
     {
         $view = new ReportView($this->app->l11nManager, $request, $response);
-        $view->setTemplate('/Modules/QualityManagement/Theme/Backend/report-view');
-        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1008502001, $request, $response);
 
         $view->data['report'] = ReportMapper::get()
             ->with('task')
@@ -151,6 +150,16 @@ final class BackendController extends Controller
             ->where('task/tags/title/language', $request->header->l11n->language)
             ->execute();
 
+        if ($view->data['report']->id === 0) {
+            $response->header->status = RequestStatusCode::R_404;
+            $view->setTemplate('/Web/Backend/Error/404');
+
+            return $view;
+        }
+
+        $view->setTemplate('/Modules/QualityManagement/Theme/Backend/report-view');
+        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1008502001, $request, $response);
+
         /** @var \Model\Setting $profileImage */
         $profileImage = $this->app->appSettings->get(names: ProfileSettingsEnum::DEFAULT_PROFILE_IMAGE, module: 'Profile');
 
@@ -163,6 +172,69 @@ final class BackendController extends Controller
 
         $editor               = new \Modules\Editor\Theme\Backend\Components\Editor\BaseView($this->app->l11nManager, $request, $response);
         $view->data['editor'] = $editor;
+
+        return $view;
+    }
+
+    /**
+     * Routing end-point for application behavior.
+     *
+     * @param RequestAbstract  $request  Request
+     * @param ResponseAbstract $response Response
+     * @param array            $data     Generic data
+     *
+     * @return RenderableInterface
+     *
+     * @since 1.0.0
+     * @codeCoverageIgnore
+     */
+    public function viewAuditList(RequestAbstract $request, ResponseAbstract $response, array $data = []) : RenderableInterface
+    {
+        $view = new View($this->app->l11nManager, $request, $response);
+        $view->setTemplate('/Modules/QualityManagement/Theme/Backend/audit-list');
+        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1008502001, $request, $response);
+
+        return $view;
+    }
+
+    /**
+     * Routing end-point for application behavior.
+     *
+     * @param RequestAbstract  $request  Request
+     * @param ResponseAbstract $response Response
+     * @param array            $data     Generic data
+     *
+     * @return RenderableInterface
+     *
+     * @since 1.0.0
+     * @codeCoverageIgnore
+     */
+    public function viewAudit(RequestAbstract $request, ResponseAbstract $response, array $data = []) : RenderableInterface
+    {
+        $view = new View($this->app->l11nManager, $request, $response);
+        $view->setTemplate('/Modules/QualityManagement/Theme/Backend/audit-view');
+        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1008502001, $request, $response);
+
+        return $view;
+    }
+
+    /**
+     * Routing end-point for application behavior.
+     *
+     * @param RequestAbstract  $request  Request
+     * @param ResponseAbstract $response Response
+     * @param array            $data     Generic data
+     *
+     * @return RenderableInterface
+     *
+     * @since 1.0.0
+     * @codeCoverageIgnore
+     */
+    public function viewAuditCreate(RequestAbstract $request, ResponseAbstract $response, array $data = []) : RenderableInterface
+    {
+        $view = new View($this->app->l11nManager, $request, $response);
+        $view->setTemplate('/Modules/QualityManagement/Theme/Backend/audit-view');
+        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1008502001, $request, $response);
 
         return $view;
     }
