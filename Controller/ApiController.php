@@ -256,7 +256,7 @@ final class ApiController extends Controller
         $this->app->moduleManager->get('Tasks')->apiTaskElementSet($request, $response);
 
         /** @var \Modules\Tasks\Models\TaskElement $new */
-        $new = $response->getData($request->uri->__toString())['response'];
+        $new = $response->getDataArray($request->uri->__toString())['response'];
 
         //$this->updateModel($request->header->account, $report, $report, ReportMapper::class, 'report', $request->getOrigin());
         $this->createStandardUpdateResponse($request, $response, $new);
