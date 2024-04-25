@@ -105,9 +105,7 @@ final class ApiController extends Controller
         $task->type = TaskType::HIDDEN;
         $task->unit ??= $this->app->unitId;
 
-        $report = new Report($task);
-
-        return $report;
+        return new Report($task);
     }
 
     /**

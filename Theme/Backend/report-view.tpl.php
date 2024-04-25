@@ -37,17 +37,17 @@ echo $this->data['nav']->render(); ?>
             <div class="portlet-body">
                 <div class="form-group">
                     <label for="iBill"><?= $this->getHtml('Bill'); ?></label>
-                    <input type="text" id="iBill" name="bill" form="fTask"<?= !$isNew ? ' disabled' : ''; ?>>
+                    <input type="text" id="iBill" name="bill" form="fTask"<?= $isNew ? '' : ' disabled'; ?>>
                 </div>
 
                 <div class="form-group">
                     <label for="iItem"><?= $this->getHtml('Item'); ?></label>
-                    <input type="text" id="iItem" name="item" form="fTask"<?= !$isNew ? ' disabled' : ''; ?>>
+                    <input type="text" id="iItem" name="item" form="fTask"<?= $isNew ? '' : ' disabled'; ?>>
                 </div>
 
                 <div class="form-group">
                     <label for="iLotSN"><?= $this->getHtml('LotSN'); ?></label>
-                    <input type="text" id="iLotSN" name="lot" form="fTask"<?= !$isNew ? ' disabled' : ''; ?>>
+                    <input type="text" id="iLotSN" name="lot" form="fTask"<?= $isNew ? '' : ' disabled'; ?>>
                 </div>
             </div>
         </section>
