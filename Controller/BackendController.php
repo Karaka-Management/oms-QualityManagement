@@ -143,7 +143,7 @@ final class BackendController extends Controller
             ->with('task/tags/title')
             ->with('task/taskElements')
             ->with('task/taskElements/createdBy')
-            ->with('task/taskElements/media')
+            ->with('task/taskElements/files')
             ->with('task/attributes')
             ->with('task/for')
             ->where('id', (int) $request->getData('id'))
