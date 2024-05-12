@@ -14,9 +14,12 @@ declare(strict_types=1);
 
 namespace Modules\QualityManagement\Controller;
 
+use Attribute;
+use Modules\Admin\Models\NullAccount;
 use Modules\Notification\Models\NotificationType;
 use Modules\QualityManagement\Models\Report;
 use Modules\QualityManagement\Models\ReportMapper;
+use Modules\Tasks\Models\Attribute\TaskAttributeTypeMapper;
 use Modules\Tasks\Models\TaskElementMapper;
 use Modules\Tasks\Models\TaskMapper;
 use Modules\Tasks\Models\TaskStatus;
@@ -101,9 +104,52 @@ final class ApiController extends Controller
     private function createReportFromRequest(RequestAbstract $request) : Report
     {
         $request->setData('redirect', 'qualitymanagement/report/view?for={$id}');
+        /** @var \Modules\Tasks\Models\Task $task */
         $task       = $this->app->moduleManager->get('Tasks', 'Api')->createTaskFromRequest($request);
-        $task->type = TaskType::HIDDEN;
         $task->unit ??= $this->app->unitId;
+        $task->for = $request->hasData('account') ? new NullAccount((int) $request->getData('account')) : null;
+
+        if (($value = $request->getDataString('bill')) !== null) {
+            $attrType = TaskAttributeTypeMapper::get()
+                ->where('name', 'bill')
+                ->execute();
+
+            if ($attrType->id !== 0) {
+                $internalRequest = new RequestAbstract();
+                $internalRequest->setData('value', $value);
+                $attribute = $this->app->moduleManager->get('Attribute', 'Api')->createAttributeFromRequest($internalRequest, $attrType);
+
+                $task->attributes[] = $attribute;
+            }
+        }
+
+        if (($value = $request->getDataString('item')) !== null) {
+            $attrType = TaskAttributeTypeMapper::get()
+                ->where('name', 'item')
+                ->execute();
+
+            if ($attrType->id !== 0) {
+                $internalRequest = new RequestAbstract();
+                $internalRequest->setData('value', $value);
+                $attribute = $this->app->moduleManager->get('Attribute', 'Api')->createAttributeFromRequest($internalRequest, $attrType);
+
+                $task->attributes[] = $attribute;
+            }
+        }
+
+        if (($value = $request->getDataString('lot')) !== null) {
+            $attrType = TaskAttributeTypeMapper::get()
+                ->where('name', 'lot_internal')
+                ->execute();
+
+            if ($attrType->id !== 0) {
+                $internalRequest = new RequestAbstract();
+                $internalRequest->setData('value', $value);
+                $attribute = $this->app->moduleManager->get('Attribute', 'Api')->createAttributeFromRequest($internalRequest, $attrType);
+
+                $task->attributes[] = $attribute;
+            }
+        }
 
         return new Report($task);
     }

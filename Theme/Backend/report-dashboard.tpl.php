@@ -23,7 +23,7 @@ $reports = $this->data['reports'];
 echo $this->data['nav']->render(); ?>
 
 <div class="row">
-    <div class="col-xs-12 col-md-9">
+    <div class="col-xs-12">
         <section class="portlet">
             <div class="portlet-head"><?= $this->getHtml('Open'); ?><i class="g-icon download btn end-xs">download</i></div>
             <div class="slider">
@@ -34,7 +34,6 @@ echo $this->data['nav']->render(); ?>
                     <td><?= $this->getHtml('Creator'); ?>
                     <td><?= $this->getHtml('Assigned'); ?>
                     <td><?= $this->getHtml('For'); ?>
-                    <td><?= $this->getHtml('Item'); ?>
                     <td><?= $this->getHtml('Created'); ?>
                 <tbody>
                 <?php
@@ -56,7 +55,6 @@ echo $this->data['nav']->render(); ?>
                             </a>
                             <?php endforeach; ?>
                         <td><a class="content"><?= $this->printHtml($report->task->for->name1); ?> <?= $this->printHtml($report->task->for->name2); ?>
-                        <td><a href="<?= $url; ?>"><?= $this->getHtml('P' . $report->task->priority, 'Tasks'); ?></a>
                         <td><a href="<?= $url; ?>"><?= $this->printHtml($report->task->createdAt->format('Y-m-d H:i')); ?></a>
                 <?php endforeach; if ($c == 0) : ?>
                     <tr><td colspan="7" class="empty"><?= $this->getHtml('Empty', '0', '0'); ?>
@@ -75,7 +73,6 @@ echo $this->data['nav']->render(); ?>
                     <td><?= $this->getHtml('Creator'); ?>
                     <td><?= $this->getHtml('Assigned'); ?>
                     <td><?= $this->getHtml('For'); ?>
-                    <td><?= $this->getHtml('Item'); ?>
                     <td><?= $this->getHtml('Created'); ?>
                 <tbody>
                 <?php
@@ -97,27 +94,11 @@ echo $this->data['nav']->render(); ?>
                             </a>
                             <?php endforeach; ?>
                         <td><a class="content"><?= $this->printHtml($report->task->for->name1); ?> <?= $this->printHtml($report->task->for->name2); ?>
-                        <td><a href="<?= $url; ?>"><?= $this->getHtml('P' . $report->task->priority, 'Tasks'); ?></a>
                         <td><a href="<?= $url; ?>"><?= $this->printHtml($report->task->createdAt->format('Y-m-d H:i')); ?></a>
                 <?php endforeach; if ($c == 0) : ?>
                     <tr><td colspan="7" class="empty"><?= $this->getHtml('Empty', '0', '0'); ?>
                 <?php endif; ?>
             </table>
-            </div>
-        </section>
-    </div>
-
-    <div class="col-xs-12 col-md-3">
-        <section class="portlet">
-            <div class="portlet-head"><?= $this->getHtml('Stats'); ?></div>
-            <div class="portlet-body">
-                <table class="list">
-                    <tr><th><?= $this->getHtml('Unassigned'); ?><td><?= $this->data['stats']['unassigned'] ?? 0; ?>
-                    <tr><th><?= $this->getHtml('Open'); ?><td><?= $this->data['stats']['open'] ?? 0; ?>
-                    <tr><th><?= $this->getHtml('InProgress'); ?><td><?= $this->data['stats']['inprogress'] ?? 0; ?>
-                    <tr><th><?= $this->getHtml('Closed'); ?><td><?= $this->data['stats']['closed'] ?? 0; ?>
-                    <tr><th><?= $this->getHtml('Total'); ?><td><?= $this->data['stats']['total'] ?? 0; ?>
-                </table>
             </div>
         </section>
     </div>

@@ -44,7 +44,7 @@ echo $this->data['nav']->render(); ?>
 
                     <div class="form-group">
                         <label for="iLotSN"><?= $this->getHtml('LotSN'); ?></label>
-                        <input id="iLotSN" type="text" name="lot">
+                        <input id="iLotSN" type="text" name="lot_internal">
                     </div>
 
                     <div class="form-group">

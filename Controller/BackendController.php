@@ -94,8 +94,6 @@ final class BackendController extends Controller
             ->query($openQuery)
             ->executeGetArray();
 
-        $view->data['stats'] = ReportMapper::getStatOverview();
-
         return $view;
     }
 
@@ -145,6 +143,8 @@ final class BackendController extends Controller
             ->with('task/taskElements/createdBy')
             ->with('task/taskElements/files')
             ->with('task/attributes')
+            ->with('task/attributes/type')
+            ->with('task/attributes/value')
             ->with('task/for')
             ->where('id', (int) $request->getData('id'))
             ->where('task/tags/title/language', $request->header->l11n->language)
