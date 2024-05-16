@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace Modules\QualityManagement\Controller;
 
-use Attribute;
 use Modules\Admin\Models\NullAccount;
 use Modules\Notification\Models\NotificationType;
 use Modules\QualityManagement\Models\Report;
@@ -23,7 +22,7 @@ use Modules\Tasks\Models\Attribute\TaskAttributeTypeMapper;
 use Modules\Tasks\Models\TaskElementMapper;
 use Modules\Tasks\Models\TaskMapper;
 use Modules\Tasks\Models\TaskStatus;
-use Modules\Tasks\Models\TaskType;
+use phpOMS\Message\Http\HttpRequest;
 use phpOMS\Message\Http\RequestStatusCode;
 use phpOMS\Message\RequestAbstract;
 use phpOMS\Message\ResponseAbstract;
@@ -105,7 +104,7 @@ final class ApiController extends Controller
     {
         $request->setData('redirect', 'qualitymanagement/report/view?for={$id}');
         /** @var \Modules\Tasks\Models\Task $task */
-        $task       = $this->app->moduleManager->get('Tasks', 'Api')->createTaskFromRequest($request);
+        $task = $this->app->moduleManager->get('Tasks', 'Api')->createTaskFromRequest($request);
         $task->unit ??= $this->app->unitId;
         $task->for = $request->hasData('account') ? new NullAccount((int) $request->getData('account')) : null;
 
@@ -115,7 +114,7 @@ final class ApiController extends Controller
                 ->execute();
 
             if ($attrType->id !== 0) {
-                $internalRequest = new RequestAbstract();
+                $internalRequest = new HttpRequest();
                 $internalRequest->setData('value', $value);
                 $attribute = $this->app->moduleManager->get('Attribute', 'Api')->createAttributeFromRequest($internalRequest, $attrType);
 
@@ -129,7 +128,7 @@ final class ApiController extends Controller
                 ->execute();
 
             if ($attrType->id !== 0) {
-                $internalRequest = new RequestAbstract();
+                $internalRequest = new HttpRequest();
                 $internalRequest->setData('value', $value);
                 $attribute = $this->app->moduleManager->get('Attribute', 'Api')->createAttributeFromRequest($internalRequest, $attrType);
 
@@ -143,7 +142,7 @@ final class ApiController extends Controller
                 ->execute();
 
             if ($attrType->id !== 0) {
-                $internalRequest = new RequestAbstract();
+                $internalRequest = new HttpRequest();
                 $internalRequest->setData('value', $value);
                 $attribute = $this->app->moduleManager->get('Attribute', 'Api')->createAttributeFromRequest($internalRequest, $attrType);
 
@@ -302,7 +301,14 @@ final class ApiController extends Controller
         $this->app->moduleManager->get('Tasks')->apiTaskElementSet($request, $response);
 
         /** @var \Modules\Tasks\Models\TaskElement $new */
-        $new = $response->getDataArray($request->uri->__toString())['response'];
+        $new = $response->getDataArray($request->uri->__toString())['response'] ?? null;
+
+        if ($new === null) {
+            $response->header->status = RequestStatusCode::R_400;
+            $this->createInvalidUpdateResponse($request, $response, $new);
+
+            return;
+        }
 
         //$this->updateModel($request->header->account, $report, $report, ReportMapper::class, 'report', $request->getOrigin());
         $this->createStandardUpdateResponse($request, $response, $new);

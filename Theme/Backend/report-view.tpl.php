@@ -25,7 +25,7 @@ $taskMedia = $task->files;
 $elements  = $report->task->invertTaskElements();
 $cElements = \count($elements);
 $color     = 'red'; //$this->getStatus($task->status);
-$isNew = $report->id === 0;
+$isNew     = $report->id === 0;
 
 echo $this->data['nav']->render(); ?>
 

@@ -2,7 +2,7 @@
     "name": {
         "id": 1008500000,
         "internal": "QualityManagement",
-        "external": "QualityManagement"
+        "external": "Quality Management"
     },
     "category": "Tools",
     "version": "1.0.0",
@@ -12,7 +12,7 @@
     },
     "creator": {
         "name": "Jingga",
-        "website": "jingga.app"
+        "website": "https://jingga.app"
     },
     "directory": "QualityManagement",
     "dependencies": {

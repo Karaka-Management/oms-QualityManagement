@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Modules\QualityManagement\Controller;
 
 use Modules\Media\Models\MediaMapper;
+use Modules\Profile\Models\SettingsEnum as ProfileSettingsEnum;
 use Modules\QualityManagement\Models\ReportMapper;
 use Modules\QualityManagement\Views\ReportView;
 use Modules\Tasks\Models\AccountRelationMapper;
@@ -25,11 +26,10 @@ use Modules\Tasks\Models\TaskType;
 use phpOMS\Contract\RenderableInterface;
 use phpOMS\DataStorage\Database\Query\Builder;
 use phpOMS\DataStorage\Database\Query\OrderType;
+use phpOMS\Message\Http\RequestStatusCode;
 use phpOMS\Message\RequestAbstract;
 use phpOMS\Message\ResponseAbstract;
 use phpOMS\Views\View;
-use Modules\Profile\Models\SettingsEnum as ProfileSettingsEnum;
-use phpOMS\Message\Http\RequestStatusCode;
 
 /**
  * QualityManagement controller class.
