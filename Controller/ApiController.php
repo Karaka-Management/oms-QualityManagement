@@ -169,7 +169,7 @@ final class ApiController extends Controller
     public function apiReportGet(RequestAbstract $request, ResponseAbstract $response, array $data = []) : void
     {
         /** @var \Modules\QualityManagement\Models\Report $report */
-        $report = ReportMapper::get()->where('id', (int) $request->getData('id'))->execute();
+        $report = ReportMapper::get()->where('id', $request->getDataInt('id') ?? 0)->execute();
         $this->createStandardReturnResponse($request, $response, $report);
     }
 
@@ -191,7 +191,7 @@ final class ApiController extends Controller
         /** @var \Modules\QualityManagement\Models\Report $old */
         $old = ReportMapper::get()
             ->with('task')
-            ->where('id', (int) $request->getData('id'))
+            ->where('id', $request->getDataInt('id') ?? 0)
             ->execute();
 
         $new = $this->updateReportFromRequest($request, clone $old);

@@ -146,7 +146,7 @@ final class BackendController extends Controller
             ->with('task/attributes/type')
             ->with('task/attributes/value')
             ->with('task/for')
-            ->where('id', (int) $request->getData('id'))
+            ->where('id', $request->getDataInt('id') ?? 0)
             ->where('task/tags/title/language', $request->header->l11n->language)
             ->execute();
 
